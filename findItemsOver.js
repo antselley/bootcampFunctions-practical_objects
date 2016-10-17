@@ -1,13 +1,14 @@
 
+const assert = require('assert');
 
 var findItemsOver = function (listOfObjects,threshold) {
   var listOfExpensiveItems = [];
   for (object in listOfObjects) {
     if (listOfObjects[object].price > threshold) {
-      listOfOverR20.push(listOfObjects[object].itemName);
+      listOfExpensiveItems.push(listOfObjects[object].itemName);
     }
   }
-  return listOfOverR20;
+  return listOfExpensiveItems;
 }
 
 
@@ -26,4 +27,4 @@ var shoppingList2 = [
     { itemName : 'Digital Watch' , price: 250 }
 ];
 
-console.log(findItemsOver20(shoppingList2));
+assert.deepEqual(findItemsOver(shoppingList2,10), ["Bread","Cheese","Digital Watch"]);
