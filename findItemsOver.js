@@ -1,10 +1,9 @@
 
-const assert = require('assert');
 
-var findItemsOver20 = function (listOfObjects) {
-  var listOfOverR20 = [];
+var findItemsOver = function (listOfObjects,threshold) {
+  var listOfExpensiveItems = [];
   for (object in listOfObjects) {
-    if (listOfObjects[object].price > 20) {
+    if (listOfObjects[object].price > threshold) {
       listOfOverR20.push(listOfObjects[object].itemName);
     }
   }
@@ -23,8 +22,8 @@ var shoppingList2 = [
     { itemName : 'Bread', price : 11.00 },
     { itemName : 'Milk', price : 7.00 },
     { itemName : 'Cheese', price : 23.00 },
-    { itemName : 'Bread', price : 9.50 }
+    { itemName : 'Bread', price : 9.50 },
+    { itemName : 'Digital Watch' , price: 250 }
 ];
 
-
-assert.equal(findItemsOver20(shoppingList2), "Cheese" );
+console.log(findItemsOver20(shoppingList2));
