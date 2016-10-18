@@ -1,17 +1,28 @@
 
-const assert = require('assert');
-
 var mostProfitableDay = function(salesDataInput) {
-  maxProfit = 0;
-  dayWithMostProfit = "Not a single department made any money";
-  for (object in salesDataInput) {
-    if (salesDataInput[object].sales > maxProfit) {
-      maxProfit = salesDataInput[object].sales;
-      dayWithMostProfit = salesDataInput[object].day;
+  mapOfTotalSalesPerDay = {};
+
+//loop through the salesDataInput - if the day is not yet in the mapOfTotalSalesPerDay --> add it to the mapOfTotalSalesPerDay (initialise to 0)
+  for (shop in salesDataInput) {
+    var currentShop = salesDataInput[shop];
+      if (mapOfTotalSalesPerDay[currentShop.day] === undefined) {
+        mapOfTotalSalesPerDay[currentShop.day] = 0
+      }
+    mapOfTotalSalesPerDay[currentShop.day] += currentShop.sales ; // Loop through the map & add increment by new amounts...
     }
-  }
-  return departmentWithMostProfit;
+
+  // Initialize a maximum sales per day variable and update it to end up as the maximum...(using a loop)
+    var maxSalesPerDay = 0 ;
+    var dayOnWhichMaxSales = "No sales were made during this perdio" ;
+    for (day in mapOfTotalSalesPerDay) {
+      if (mapOfTotalSalesPerDay[day] > maxSalesPerDay) {
+        maxSalesPerDay = mapOfTotalSalesPerDay[day] ;
+        dayOnWhichMaxSales = day;
+      }
+    }
+    console.log("The most sales were made on " + dayOnWhichMaxSales + " on which R" + maxSalesPerDay + " of sales were made");
 }
+
 
 var salesData = [
     {department : 'hardware', sales : 4500, day : 'Monday'},
@@ -24,11 +35,11 @@ var salesData = [
     {department : 'outdoor', sales : 8507, day : 'Wednesday'},
     {department : 'carpentry', sales : 8009, day : 'Wednesday'},
     {department : 'hardware', sales : 12000, day : 'Thursday'},
-    {department : 'outdoor', sales : 18007, day : 'Thursday'},
+    {department : 'outdoor', sales : 1007, day : 'Thursday'},
     {department : 'carpentry', sales : 6109, day : 'Thursday'},
     {department : 'hardware', sales : 7005, day : 'Friday'},
     {department : 'outdoor', sales : 12006, day : 'Friday'},
     {department : 'carpentry', sales : 16109, day : 'Friday'},
 ];
 
-assert.equal(mostProfitableDepartment(salesData), "Thursday" );
+mostProfitableDay(salesData) ;
