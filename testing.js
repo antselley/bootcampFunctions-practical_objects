@@ -1,3 +1,9 @@
+var fruitMap = {
+    'Apples' : 13,
+    'Melon'  : 7,
+    'Banana' : 12
+}
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
-console.log(alphabet);
+for(var fruit in fruitMap){
+    console.log(fruit);
+}
